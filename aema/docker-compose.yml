@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: "3"
+services:
+  database_development:
+    image: "postgres" # use latest official postgres version
+    environment:
+      - POSTGRES_DB=aema-development
+      - POSTGRES_USER=aema
+      - POSTGRES_PASSWORD=aema
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - 5431:5432
+  database_production:
+    image: "postgres" # use latest official postgres version
+    environment:
+      - POSTGRES_DB=aema-production
+      - POSTGRES_USER=aema
+      - POSTGRES_PASSWORD=aema
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - 5430:5432
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
