@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import express from "express";
+import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { ensureLoggedIn } from "connect-ensure-login";
 
 import passport from "../passport.js";
@@ -8,8 +9,13 @@ import User from "../db/models/User.js";
 const authRouter = express.Router();
 
 authRouter.get("/login", function (req, res) {
-  if(!req.user) return res.status(500).send();
-  return res.status(201).send();
+  if (!req.user)
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .send(ReasonPhrases.UNAUTHORIZED);
+  return res.status(StatusCodes.OK).json({
+    data: req.user,
+  });
 });
 
 authRouter.post("/login/password", (req, res, next) => {
@@ -19,22 +25,25 @@ authRouter.post("/login/password", (req, res, next) => {
     }
 
     if (!user) {
-      return res.status(400).json({ error: info });
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .send(ReasonPhrases.BAD_REQUEST);
     }
 
-    req.logIn(user, function (err) {
+    req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
 
-      return res.status(201).send();
+      return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
     });
   })(req, res, next);
 });
 
-authRouter.post("/logout", function (req, res, next) {
+authRouter.post("/logout", function (req, res) {
   req.logout();
-  return res.status(201).send();
+  req.session.destroy();
+  return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
 });
 
 authRouter.post("/signup", (req, res, next) => {
@@ -63,7 +72,7 @@ authRouter.post("/signup", (req, res, next) => {
           if (err) {
             return next(err);
           }
-          return res.status(201).send();
+          return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
         });
       } catch (error) {
         return next(error);
@@ -73,7 +82,7 @@ authRouter.post("/signup", (req, res, next) => {
 });
 
 authRouter.get("/hola", ensureLoggedIn("/auth/login"), (req, res) => {
-  res.status(200).json({});
+  return res.status(StatusCodes.OK).json({});
 });
 
 export default authRouter;

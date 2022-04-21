@@ -7,7 +7,7 @@ import User from "./db/models/User.js";
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "email", // define the parameter in req.body that passport can use as username and password
+      usernameField: "email",
       passwordField: "password",
     },
     function verify(email, password, done) {
@@ -15,6 +15,7 @@ passport.use(
         where: {
           email,
         },
+        raw: true,
       })
         .then((user) => {
           if (!user) {
@@ -38,11 +39,10 @@ passport.use(
                   message: "Incorrect email or password.",
                 });
               }
+
               return done(null, user);
             }
           );
-
-          return done(null, user, { scope: "all" });
         })
         .catch((error) => {
           return done(error);
@@ -51,11 +51,16 @@ passport.use(
   )
 );
 
-passport.serializeUser(function (user, done) {
-  return done(null, { id: user.id, email: user.email });
+passport.serializeUser((user, done) => {
+  return done(null, {
+    id: user.id,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+  });
 });
 
-passport.deserializeUser(function (user, done) {
+passport.deserializeUser((user, done) => {
   return done(null, user);
 });
 
