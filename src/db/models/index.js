@@ -1,12 +1,8 @@
 import Sequelize from "sequelize";
-import { createRequire } from "module";
 
-const require = createRequire(import.meta.url);
-const config = require("../config/database.json");
+import config from "../config/database.js";
 
-const env = process.env.NODE_ENV || "development";
-
-const { username, password, database, host, port, dialect } = config[env];
+const { dialect, username, password, port, database, host } = config;
 
 const sequelize = new Sequelize(
   `${dialect}://${username}:${password}@${host}:${port}/${database}`
