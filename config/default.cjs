@@ -14,7 +14,6 @@ module.exports = {
   session: {
     secret: "keyboard cat",
     cookie: {
-      maxAge: 360000,
       secure: false,
     },
   },

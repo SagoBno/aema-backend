@@ -19,7 +19,6 @@ export default (app) => {
       resave: false,
       saveUninitialized: true,
       cookie: {
-        maxAge: config.get("session.cookie.maxAge"),
         httpOnly: true,
         secure: config.get("session.cookie.secure"),
       },
