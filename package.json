@@ -10,7 +10,8 @@
   "scripts": {
     "start": "export NODE_ENV=production && npm run db:migrate && node src/index.js",
     "dev": "nodemon src/index.js",
-    "db:migrate": "sequelize-cli db:migrate"
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:revert": "sequelize-cli db:migrate:undo"
   },
   "author": "",
   "license": "ISC",

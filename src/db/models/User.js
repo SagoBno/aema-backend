@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 
 import sequelize from "./index.js";
+import UserAnswer from "./UserAnswer.js";
 
 const User = sequelize.define(
   "User",
@@ -30,5 +31,7 @@ const User = sequelize.define(
     tableName: "Users",
   }
 );
+
+User.hasMany(UserAnswer, { foreignKey: { name: 'userId', allowNull: false } });
 
 export default User;
