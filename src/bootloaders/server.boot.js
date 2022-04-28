@@ -1,10 +1,13 @@
 import config from "config";
 import express from "express";
 
-export default () => {
-  const app = express();
+export default (app) =>
+  new Promise((resolve) => {
+    const server = express();
 
-  app.set("PORT", config.get("server.port"));
+    server.set("PORT", config.get("server.port"));
 
-  return app;
-};
+    app.server = server;
+
+    resolve(app);
+  });

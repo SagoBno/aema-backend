@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "engines": {
     "node": "17.3.0"
   },
   "scripts": {
-    "start": "export NODE_ENV=production && npm run db:migrate && node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "export NODE_ENV=production && npm run db:migrate && node src/app.js",
+    "dev": "nodemon src/app.js",
     "db:migrate": "sequelize-cli db:migrate",
     "db:revert": "sequelize-cli db:migrate:undo"
   },

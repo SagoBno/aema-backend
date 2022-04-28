@@ -1,14 +1,12 @@
+import dbBoot from "./db.boot.js";
 import serverBoot from "./server.boot.js";
 import routesBoot from "./routes.boot.js";
-import generalMiddlewares from "./general-middlewares.js";
+import passportBoot from "./passport.boot.js";
+import generalMiddlewares from "./general-middlewares.boot.js";
 
-export default () => {
-  const app = serverBoot();
-
-  generalMiddlewares(app);
-  routesBoot(app);
-
-  app.listen(app.get("PORT"), () => {
-    console.info(`Listening on port ${app.get("PORT")}`);
-  });
-}
+export default (app) =>
+  serverBoot(app)
+    .then(passportBoot)
+    .then(generalMiddlewares)
+    .then(routesBoot)
+    .then(dbBoot);

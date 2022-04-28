@@ -3,8 +3,7 @@ import express from "express";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { ensureLoggedIn } from "connect-ensure-login";
 
-import passport from "../passport.js";
-import User from "../db/models/User.js";
+import app from "../app.js";
 
 const authRouter = express.Router();
 
@@ -19,7 +18,7 @@ authRouter.get("/login", function (req, res) {
 });
 
 authRouter.post("/login/password", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+  app.passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -60,7 +59,7 @@ authRouter.post("/signup", (req, res, next) => {
       }
 
       try {
-        const user = await User.create({
+        const user = await app.db.User.create({
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,

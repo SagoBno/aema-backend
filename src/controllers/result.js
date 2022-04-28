@@ -1,52 +1,52 @@
-import Result from "../db/models/Result.js";
+import app from "../app.js";
 
 async function create(result) {
-    try {
-        const createdResult = await Result.create(result);
-        return createdResult;
-    } catch (error) {
-        throw error;
-    }
-};
+  try {
+    const createdResult = await app.db.Result.create(result);
+    return createdResult;
+  } catch (error) {
+    throw error;
+  }
+}
 
 async function getAll() {
-    try {
-        const result = await Result.findAll();
-        return result;
-    } catch (error) {
-        throw error;
-    }
-};
+  try {
+    const result = await app.db.Result.findAll();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
 
 async function update(result) {
-    try {
-        const updatedResult = await Result.update(result, {
-            where: {
-                id: result.id,
-            }
-        });
-        return updatedResult;
-    } catch (error) {
-        throw error;
-    }
-};
+  try {
+    const updatedResult = await app.db.Result.update(result, {
+      where: {
+        id: result.id,
+      },
+    });
+    return updatedResult;
+  } catch (error) {
+    throw error;
+  }
+}
 
 async function remove(resultId) {
-    try {
-        const deletedResult = await Result.destroy({
-            where: {
-                id: resultId,
-            }
-        });
-        return deletedResult;
-    } catch (error) {
-        throw error;
-    }
-};
+  try {
+    const deletedResult = await app.db.Result.destroy({
+      where: {
+        id: resultId,
+      },
+    });
+    return deletedResult;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export default {
-    create,
-    getAll,
-    update,
-    remove,
+  create,
+  getAll,
+  update,
+  remove,
 };
