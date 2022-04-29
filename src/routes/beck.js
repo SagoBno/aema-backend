@@ -3,7 +3,7 @@ import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { ensureLoggedIn } from "connect-ensure-login";
 
 import UserAnswerController from "../controllers/UserAnswer.js";
-import ResultController from "../controllers/result.js";
+import ResultController from "../controllers/Result.js";
 
 const beckRouter = express.Router();
 
@@ -18,14 +18,14 @@ beckRouter.post("/", ensureLoggedIn("/auth/login"), async (req, res, next) => {
           userId: req.user.id,
           value: answer.value,
         });
-      })
+      }),
     );
     await ResultController.create({
       total,
+      userId: req.user.id,
     });
     return res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
   } catch (error) {
-    console.log(error);
     return next(error);
   }
 });
@@ -48,10 +48,7 @@ beckRouter.patch("/", ensureLoggedIn("/auth/login"), async (req, res) => {
   }
 });
 
-beckRouter.delete(
-  "/:userAnswerId",
-  ensureLoggedIn("/auth/login"),
-  async (req, res) => {
+beckRouter.delete("/:userAnswerId", ensureLoggedIn("/auth/login"), async (req, res) => {
     try {
       await UserAnswerController.delete(req.params.userAnswerId);
       return res.status(StatusCodes.OK).send(ReasonPhrases.OK);
