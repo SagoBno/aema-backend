@@ -39,7 +39,7 @@ export default function (sequelize, DataTypes) {
       sequelize,
       modelName: "UserAnswer",
       freezeTableName: false,
-      tableName: "UserAnswers",
+      tableName: "UsersAnswers",
     }
   );
   return UserAnswer;

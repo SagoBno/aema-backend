@@ -23,6 +23,7 @@ async function getAll(userId) {
     const userAnswers = await app.db.UserAnswer.findAll({
       where: { userId },
     });
+    console.log(userAnswers);
     return userAnswers;
   } catch (error) {
     throw error;

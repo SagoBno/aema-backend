@@ -3,7 +3,7 @@ import { Model } from "sequelize";
 export default function (sequelize, DataTypes) {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.UserAnswer);
+      User.hasMany(models.UserAnswer, { foreignKey:'userId' });
     }
   }
   User.init(
