@@ -21,7 +21,7 @@ export default function (sequelize, DataTypes) {
       sequelize,
       modelName: "Result",
       freezeTableName: false,
-      tableName: "Result",
+      tableName: "Results",
     }
   );
   return Result;

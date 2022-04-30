@@ -1,13 +1,24 @@
 import boot from "./bootloaders/index.js";
 
-const app = {
-  models: {},
-};
+const App = (() => {
+  let instance;
 
-boot(app).then((app) =>
-  app.server.listen(app.server.get("PORT"), () => {
-    console.info(`Listening on port ${app.server.get("PORT")}`);
-  })
-);
+  const createInstance = async () => {
+    const initialApp = {
+      models: {},
+    };
+    const app = await boot(initialApp);
+    return app;
+  };
 
-export default app;
+  return {
+    getInstance: async () => {
+      if (!instance) {
+        instance = await createInstance();
+      }
+      return instance;
+    },
+  };
+})();
+
+export default App;

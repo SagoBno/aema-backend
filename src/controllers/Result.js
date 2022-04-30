@@ -1,5 +1,3 @@
-import app from "../app.js";
-
 async function create(result) {
   try {
     const createdResult = await app.db.Result.create(result);

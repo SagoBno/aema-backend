@@ -1,8 +1,15 @@
-import app from "../app.js";
-
 async function create(userAnswer) {
   try {
     const createdUserAnswer = await app.db.UserAnswer.create(userAnswer);
+    return createdUserAnswer;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function createMultiple(userAnswers) {
+  try {
+    const createdUserAnswer = await app.db.UserAnswer.bulkCreate(userAnswers);
     return createdUserAnswer;
   } catch (error) {
     throw error;
@@ -23,7 +30,6 @@ async function getAll(userId) {
     const userAnswers = await app.db.UserAnswer.findAll({
       where: { userId },
     });
-    console.log(userAnswers);
     return userAnswers;
   } catch (error) {
     throw error;
@@ -58,6 +64,7 @@ async function remove(userAnswerId) {
 
 export default {
   create,
+  createMultiple,
   find,
   getAll,
   update,

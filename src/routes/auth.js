@@ -1,9 +1,7 @@
 import crypto from "crypto";
 import express from "express";
-import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { ensureLoggedIn } from "connect-ensure-login";
-
-import app from "../app.js";
+import { StatusCodes, ReasonPhrases } from "http-status-codes";
 
 const authRouter = express.Router();
 
