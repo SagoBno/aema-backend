@@ -1,10 +1,11 @@
-import config from "config";
-import express from "express";
+import config from 'config';
+import express from 'express';
 
-export default (app) => {
+export default (appParam) => {
+  const app = appParam;
   const server = express();
 
-  server.set("PORT", config.get("server.port"));
+  server.set('PORT', config.get('server.port'));
 
   app.server = server;
   return Promise.resolve(app);

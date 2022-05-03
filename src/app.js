@@ -1,4 +1,4 @@
-import boot from "./bootloaders/index.js";
+import boot from './bootloaders/index.js';
 
 const App = (() => {
   let instance;

@@ -1,14 +1,17 @@
-import fs from "fs";
-import path from "path";
-import Sequelize from "sequelize";
-import dbConfig from "../../db/config/database.js";
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize';
+import dbConfig from '../../db/config/database.js';
 
-export default async (app) => {
-  const { pathname } = new URL("../../db/models", import.meta.url);
+export default async (appParam) => {
+  const app = appParam;
+  const { pathname } = new URL('../../db/models', import.meta.url);
 
   const db = {};
 
-  const { dialect, username, password, port, database, host } = dbConfig;
+  const {
+    dialect, username, password, port, database, host,
+  } = dbConfig;
 
   const sequelize = new Sequelize(database, username, password, {
     dialect,
@@ -26,7 +29,7 @@ export default async (app) => {
 
       const loadedModel = model(sequelize, Sequelize.DataTypes);
       db[loadedModel.name] = loadedModel;
-    })
+    }),
   );
 
   Object.keys(db).forEach((modelName) => {

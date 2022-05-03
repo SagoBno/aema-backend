@@ -1,6 +1,5 @@
-'use strict';
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert('Psychologists', [
       {
         id: 1,
@@ -41,15 +40,10 @@ module.exports = {
         city: 'Cali',
         page: 'https://neurotherapy.com.co/',
       },
-  ], {});
+    ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
+  async down(queryInterface) {
+    await queryInterface.bulkDelete('Users', null, {});
+  },
 };

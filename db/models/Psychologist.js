@@ -1,15 +1,14 @@
-'use strict';
 import { Model } from 'sequelize';
+
 export default (sequelize, DataTypes) => {
   class Psychologist extends Model {
-    static associate(models) {
-      // define association here
-    }
+    // eslint-disable-next-line no-unused-vars
+    static associate(models) {}
   }
   Psychologist.init({
     name: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     phoneNumber: {
       allowNull: false,
@@ -25,12 +24,12 @@ export default (sequelize, DataTypes) => {
     },
     address: {
       allowNull: true,
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     page: {
       allowNull: false,
       type: DataTypes.STRING,
-    }
+    },
   }, {
     sequelize,
     modelName: 'Psychologist',

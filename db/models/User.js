@@ -1,10 +1,10 @@
-import { Model } from "sequelize";
+import { Model } from 'sequelize';
 
-export default function (sequelize, DataTypes) {
+export default (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.UserAnswer, { foreignKey:'userId' });
-      User.hasMany(models.Result, { foreignKey:'userId' });
+      User.hasMany(models.UserAnswer, { foreignKey: 'userId' });
+      User.hasMany(models.Result, { foreignKey: 'userId' });
     }
   }
   User.init(
@@ -31,10 +31,10 @@ export default function (sequelize, DataTypes) {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
       freezeTableName: false,
-      tableName: "Users",
-    }
+      tableName: 'Users',
+    },
   );
   return User;
-}
+};

@@ -1,9 +1,9 @@
-import { Model } from "sequelize";
+import { Model } from 'sequelize';
 
-export default function (sequelize, DataTypes) {
+export default (sequelize, DataTypes) => {
   class UserAnswer extends Model {
     static associate(models) {
-      UserAnswer.belongsTo(models.User, { foreignKey: "userId" });
+      UserAnswer.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   UserAnswer.init(
@@ -37,10 +37,10 @@ export default function (sequelize, DataTypes) {
     },
     {
       sequelize,
-      modelName: "UserAnswer",
+      modelName: 'UserAnswer',
       freezeTableName: false,
-      tableName: "UsersAnswers",
-    }
+      tableName: 'UsersAnswers',
+    },
   );
   return UserAnswer;
-}
+};

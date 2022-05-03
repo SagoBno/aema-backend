@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
 export default async (app) => {
-  const { pathname } = new URL("../routes", import.meta.url);
+  const { pathname } = new URL('../routes', import.meta.url);
 
   const routesFiles = fs.readdirSync(pathname);
 
@@ -14,7 +14,7 @@ export default async (app) => {
 
       const routesBase = fileName.slice(0, -3);
       app.server.use(`/${routesBase}`, routeHandler);
-    })
+    }),
   );
 
   return app;

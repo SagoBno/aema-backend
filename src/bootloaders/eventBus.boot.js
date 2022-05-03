@@ -1,12 +1,13 @@
-import fs from "fs";
-import path from "path";
-import EventEmitter from "events";
+import fs from 'fs';
+import path from 'path';
+import EventEmitter from 'events';
 
 class EventBus extends EventEmitter {}
 
-export default async (app) => {
+export default async (appParam) => {
+  const app = appParam;
   const eventBus = new EventBus();
-  const { pathname } = new URL("../events", import.meta.url);
+  const { pathname } = new URL('../events', import.meta.url);
 
   const eventFiles = fs.readdirSync(pathname);
 
