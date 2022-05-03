@@ -1,6 +1,9 @@
 module.exports = {
   server: {
-    whitelist: ["http://localhost:3000"],
+    whitelist: [
+      "http://localhost:3000",
+      "https://aema-frontend-production.up.railway.app",
+    ],
     port: process.env.PORT || 3001,
   },
   db: {
