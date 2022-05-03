@@ -1,21 +1,13 @@
 import { URL } from "url";
 
-import ResultController from "../controllers/Result.js";
+import resultCases from "../uses-cases/result/index.js";
 
 const { pathname } = new URL(import.meta.url);
 const fileName = pathname.split("/").pop();
 const eventName = fileName.slice(0, -3);
 
-export const handler = async (userAnswers, userId) => {
-  const total = userAnswers.reduce(
-    (acc, { dataValues: { value } }) => value + acc,
-    0
-  );
-  return await ResultController.create({
-    total,
-    userId,
-  });
-};
+export const handler = async (userAnswers, userId) =>
+  resultCases.createByUserAnswers(userAnswers, userId);
 
 const userAnswersCreated = (...payload) =>
   app.eventBus.dispatch(eventName, payload);

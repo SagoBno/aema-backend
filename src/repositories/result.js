@@ -42,9 +42,11 @@ async function remove(resultId) {
   }
 }
 
-export default {
+const resultRepository = {
   create,
   getAll,
   update,
   remove,
 };
+
+export default resultRepository;

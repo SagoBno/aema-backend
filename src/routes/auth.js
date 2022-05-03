@@ -1,85 +1,12 @@
-import crypto from "crypto";
 import express from "express";
-import { ensureLoggedIn } from "connect-ensure-login";
-import { StatusCodes, ReasonPhrases } from "http-status-codes";
+
+import userController from "../controllers/user/index.js";
 
 const authRouter = express.Router();
 
-authRouter.get("/login", function (req, res) {
-  if (!req.user)
-    return res
-      .status(StatusCodes.UNAUTHORIZED)
-      .send(ReasonPhrases.UNAUTHORIZED);
-  return res.status(StatusCodes.OK).json({
-    data: req.user,
-  });
-});
-
-authRouter.post("/login/password", (req, res, next) => {
-  app.passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-
-    if (!user) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .send(ReasonPhrases.BAD_REQUEST);
-    }
-
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-
-      return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
-    });
-  })(req, res, next);
-});
-
-authRouter.post("/logout", function (req, res) {
-  req.logout();
-  req.session.destroy();
-  return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
-});
-
-authRouter.post("/signup", (req, res, next) => {
-  const salt = crypto.randomBytes(16);
-  crypto.pbkdf2(
-    req.body.password,
-    salt,
-    310000,
-    32,
-    "sha256",
-    async (err, hashedPassword) => {
-      if (err) {
-        return next(err);
-      }
-
-      try {
-        const user = await app.db.User.create({
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          email: req.body.email,
-          password: hashedPassword,
-          salt: salt,
-        });
-
-        req.login(user, (err) => {
-          if (err) {
-            return next(err);
-          }
-          return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
-        });
-      } catch (error) {
-        return next(error);
-      }
-    }
-  );
-});
-
-authRouter.get("/hola", ensureLoggedIn("/auth/login"), (req, res) => {
-  return res.status(StatusCodes.OK).json({});
-});
+authRouter.get("/login", userController.getLoginInfo);
+authRouter.post("/login/password", userController.loginWithPassword);
+authRouter.post("/logout", userController.logout);
+authRouter.post("/signup", userController.signup);
 
 export default authRouter;
