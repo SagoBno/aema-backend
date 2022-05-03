@@ -1,7 +1,7 @@
 module.exports = {
   server: {
     whitelist: ["http://localhost:3000"],
-    port: 3001,
+    port: process.env.PORT || 3001,
   },
   db: {
     username: "aema",
