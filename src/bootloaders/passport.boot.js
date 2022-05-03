@@ -10,43 +10,39 @@ export default (appParam) => {
         usernameField: 'email',
         passwordField: 'password',
       },
-      ((email, password, done) => {
-        app.db.User.findOne({
-          where: {
-            email,
-          },
-          raw: true,
+      (email, password, done) => app.db.User.findOne({
+        where: {
+          email,
+        },
+        raw: true,
+      })
+        .then((user) => {
+          if (!user) {
+            return done(null, false, {
+              message: 'Incorrect email or password.',
+            });
+          }
+
+          return crypto.pbkdf2(
+            password,
+            user.salt,
+            310000,
+            32,
+            'sha256',
+            (err, hashedPassword) => {
+              if (err) {
+                return done(err);
+              }
+              if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
+                return done(null, false, {
+                  message: 'Incorrect username or password.',
+                });
+              }
+              return done(null, user);
+            },
+          );
         })
-          .then((user) => {
-            if (!user) {
-              return done(null, false, {
-                message: 'Incorrect email or password.',
-              });
-            }
-
-            crypto.pbkdf2(
-              password,
-              user.salt,
-              310000,
-              32,
-              'sha256',
-              (err, hashedPassword) => {
-                if (err) {
-                  return done(err);
-                }
-                if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
-                  return done(null, false, {
-                    message: 'Incorrect email or password.',
-                  });
-                }
-
-                return done(null, user);
-              },
-            );
-            return done(null);
-          })
-          .catch((error) => done(error));
-      }),
+        .catch((error) => done(error)),
     ),
   );
 

@@ -1,11 +1,11 @@
-import resultRepository from "../../repositories/result.js";
+import resultRepository from '../../repositories/result.js';
 
-const createByUserAnswers = async (userAnswers, userId) => {
+const createByUserAnswers = (userAnswers, userId) => {
   const total = userAnswers.reduce(
     (acc, { dataValues: { value } }) => value + acc,
-    0
+    0,
   );
-  return await resultRepository.create({
+  return resultRepository.create({
     total,
     userId,
   });

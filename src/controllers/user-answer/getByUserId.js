@@ -1,5 +1,5 @@
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import userAnswerCases from "../../uses-cases/user-answer/index.js";
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import userAnswerCases from '../../uses-cases/user-answer/index.js';
 
 const getByUserId = async (req, res) => {
   try {

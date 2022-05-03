@@ -3,7 +3,7 @@ import cors from 'cors';
 import config from 'config';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import session from 'express-session';
+import session from 'cookie-session';
 import cookieParser from 'cookie-parser';
 
 export default (app) => {

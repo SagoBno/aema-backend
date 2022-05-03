@@ -1,5 +1,5 @@
-import crypto from "crypto";
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import crypto from 'crypto';
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 const signup = (req, res, next) => {
   const salt = crypto.randomBytes(16);
@@ -8,7 +8,7 @@ const signup = (req, res, next) => {
     salt,
     310000,
     32,
-    "sha256",
+    'sha256',
     async (err, hashedPassword) => {
       if (err) {
         return next(err);
@@ -20,19 +20,19 @@ const signup = (req, res, next) => {
           lastName: req.body.lastName,
           email: req.body.email,
           password: hashedPassword,
-          salt: salt,
+          salt,
         });
 
-        req.login(user, (err) => {
-          if (err) {
-            return next(err);
+        return req.login(user, (loginError) => {
+          if (loginError) {
+            return next(loginError);
           }
           return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
         });
       } catch (error) {
         return next(error);
       }
-    }
+    },
   );
 };
 

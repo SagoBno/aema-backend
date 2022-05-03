@@ -1,7 +1,7 @@
-import remove from "./remove.js";
-import create from "./create.js";
-import update from "./update.js";
-import getByUserId from "./getByUserId.js";
+import remove from './remove.js';
+import create from './create.js';
+import update from './update.js';
+import getByUserId from './getByUserId.js';
 
 const userAnswerCases = {
   remove,

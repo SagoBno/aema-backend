@@ -1,6 +1,6 @@
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
-import userAnswerCases from "../../uses-cases/user-answer/index.js";
+import userAnswerCases from '../../uses-cases/user-answer/index.js';
 
 const create = async (req, res, next) => {
   try {

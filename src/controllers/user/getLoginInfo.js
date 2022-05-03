@@ -1,4 +1,4 @@
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 const getLoginInfo = (req, res) => {
   if (!req.user) {

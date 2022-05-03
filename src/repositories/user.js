@@ -1,65 +1,41 @@
 async function create(userAnswer) {
-  try {
-    const createdUserAnswer = await app.db.UserAnswer.create(userAnswer);
-    return createdUserAnswer;
-  } catch (error) {
-    throw error;
-  }
+  const createdUserAnswer = await app.db.UserAnswer.create(userAnswer);
+  return createdUserAnswer;
 }
 
 async function createMultiple(userAnswers) {
-  try {
-    const createdUserAnswer = await app.db.UserAnswer.bulkCreate(userAnswers);
-    return createdUserAnswer;
-  } catch (error) {
-    throw error;
-  }
+  const createdUserAnswer = await app.db.UserAnswer.bulkCreate(userAnswers);
+  return createdUserAnswer;
 }
 
 async function find(userAnswerId) {
-  try {
-    const userAnswer = await app.db.UserAnswer.findByPk(userAnswerId);
-    return userAnswer;
-  } catch (error) {
-    throw error;
-  }
+  const userAnswer = await app.db.UserAnswer.findByPk(userAnswerId);
+  return userAnswer;
 }
 
 async function getAll(userId) {
-  try {
-    const userAnswers = await app.db.UserAnswer.findAll({
-      where: { userId },
-    });
-    return userAnswers;
-  } catch (error) {
-    throw error;
-  }
+  const userAnswers = await app.db.UserAnswer.findAll({
+    where: { userId },
+  });
+  return userAnswers;
 }
 
 async function update(userAnswer) {
-  try {
-    const updatedUserAnswer = await app.db.UserAnswer.update(userAnswer, {
-      where: {
-        userId: userAnswer.userId,
-      },
-    });
-    return updatedUserAnswer;
-  } catch (error) {
-    throw error;
-  }
+  const updatedUserAnswer = await app.db.UserAnswer.update(userAnswer, {
+    where: {
+      userId: userAnswer.userId,
+    },
+  });
+  return updatedUserAnswer;
 }
 
 async function remove(userAnswerId) {
-  try {
-    const deletedUserAnswer = await app.db.UserAnswer.destroy({
-      where: {
-        userId: userAnswerId,
-      },
-    });
-    return deletedUserAnswer;
-  } catch (error) {
-    throw error;
-  }
+  const deletedUserAnswer = await app.db.UserAnswer.destroy({
+    where: {
+      userId: userAnswerId,
+    },
+  });
+  return deletedUserAnswer;
 }
 
 export default {

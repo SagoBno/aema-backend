@@ -1,7 +1,7 @@
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 const loginWithPassword = (req, res, next) => {
-  app.passport.authenticate("local", (err, user) => {
+  app.passport.authenticate('local', (err, user) => {
     if (err) {
       return next(err);
     }
@@ -12,9 +12,9 @@ const loginWithPassword = (req, res, next) => {
         .send(ReasonPhrases.BAD_REQUEST);
     }
 
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
+    return req.logIn(user, (loginError) => {
+      if (loginError) {
+        return next(loginError);
       }
 
       return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
