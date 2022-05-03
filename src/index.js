@@ -1,4 +1,4 @@
-import App from "./App.js";
+import App from "./app.js";
 
 App.getInstance().then((app) => {
   app.server.listen(app.server.get("PORT"), () => {
