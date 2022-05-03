@@ -7,10 +7,10 @@ module.exports = {
   },
   db: {
     username: "postgres",
-    password: "1LjFvFyCu8BuYSHLQt1O",
+    password: "2uEK7Y5VOs5tzDqZhppV",
     database: "railway",
-    host: "containers-us-west-40.railway.app",
-    port: 7914,
+    host: "containers-us-west-45.railway.app",
+    port: 6227,
     dialect: "postgres",
   },
   isProduction: true,
