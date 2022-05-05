@@ -19,11 +19,13 @@ const signup = (req, res, next) => {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,
+          genre: req.body.genre,
+          birthday: req.body.birthday,
           password: hashedPassword,
           salt,
         });
 
-        return req.login(user, (loginError) => {
+        return req.logIn(user, (loginError) => {
           if (loginError) {
             return next(loginError);
           }

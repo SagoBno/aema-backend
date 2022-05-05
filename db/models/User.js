@@ -17,6 +17,20 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      termsAcepted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      genre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Otro',
+      },
+      birthday: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
