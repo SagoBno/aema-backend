@@ -8,9 +8,10 @@
     "node": "17.3.0"
   },
   "scripts": {
-    "start": "export NODE_ENV=production && npm run db:migrate && node src/index.js",
+    "start": "export NODE_ENV=production && npm run db:migrate && npm run db:seed && node src/index.js",
     "dev": "nodemon src/index.js",
     "db:migrate": "sequelize-cli db:migrate",
+    "db:seed": "sequelize-cli db:seed:all",
     "db:revert": "sequelize-cli db:migrate:undo",
     "lint": "eslint .  --ext .js --fix"
   },

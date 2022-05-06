@@ -7,4 +7,7 @@ export default {
   host: config.get('db.host'),
   port: config.get('db.port'),
   dialect: config.get('db.dialect'),
+  seederStorage: config.get('db.seederStorage'),
+  seederStorageTableName: config.get('db.seederStorageTableName'),
+  migrationStorageTableName: config.get('db.migrationStorageTableName'),
 };

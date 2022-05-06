@@ -13,6 +13,9 @@ module.exports = {
     host: 'localhost',
     port: 5431,
     dialect: 'postgres',
+    seederStorage: 'sequelize',
+    seederStorageTableName: '_SeedersLog',
+    migrationStorageTableName: '_MigrationsLog',
   },
   session: {
     secret: 'keyboard cat',

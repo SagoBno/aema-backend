@@ -1,25 +1,32 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn('Users', 'termsAcepted', {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true,
-      allowNull: false,
-    });
-    await queryInterface.addColumn('Users', 'genre', {
-      type: Sequelize.STRING,
-      defaultValue: 'Otro',
-      allowNull: false,
-    });
-    await queryInterface.addColumn('Users', 'birthday', {
-      type: Sequelize.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.fn('now'),
-    });
+    return queryInterface.sequelize.transaction((t) => Promise.all([
+      queryInterface.addColumn('Users', 'termsAcepted', {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+        allowNull: false,
+        transaction: t,
+      }),
+      queryInterface.addColumn('Users', 'genre', {
+        type: Sequelize.STRING,
+        defaultValue: 'Otro',
+        allowNull: false,
+        transaction: t,
+      }),
+      queryInterface.addColumn('Users', 'birthday', {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
+        transaction: t,
+      }),
+    ]));
   },
 
   async down(queryInterface) {
-    await queryInterface.removeColumn('Users', 'termsAcepted');
-    await queryInterface.removeColumn('Users', 'genre');
-    await queryInterface.removeColumn('Users', 'birthday');
+    return queryInterface.sequelize.transaction((t) => Promise.all([
+      queryInterface.removeColumn('Users', 'termsAcepted', { transaction: t }),
+      queryInterface.removeColumn('Users', 'genre', { transaction: t }),
+      queryInterface.removeColumn('Users', 'birthday', { transaction: t }),
+    ]));
   },
 };
