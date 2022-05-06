@@ -2,7 +2,7 @@
   "name": "aema-backend",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Backend for Aema",
   "main": "src/index.js",
   "engines": {
     "node": "17.3.0"
