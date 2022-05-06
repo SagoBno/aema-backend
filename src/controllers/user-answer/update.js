@@ -5,7 +5,7 @@ import userAnswerCases from '../../uses-cases/user-answer/index.js';
 const update = async (req, res) => {
   try {
     const updatedUserAnswer = await userAnswerCases.update(req.body);
-    return res.status(StatusCodes.OK).send({ updatedUserAnswer });
+    return res.status(StatusCodes.OK).json({ updatedUserAnswer });
   } catch (error) {
     return res.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
   }

@@ -1,10 +1,24 @@
+import { Op } from 'sequelize';
+
 async function create(result) {
   const createdResult = await app.db.Result.create(result);
   return createdResult;
 }
 
-async function getAll() {
-  const result = await app.db.Result.findAll();
+async function getByUserId({ userId, createdAt }) {
+  const result = await app.db.Result.findAll({
+    where: {
+      userId,
+      ...(createdAt ? {
+        createdAt: {
+          [Op.eq]: new Date(createdAt),
+        },
+      } : {}),
+    },
+    order: [
+      ['createdAt', 'DESC'],
+    ],
+  });
   return result;
 }
 
@@ -28,7 +42,7 @@ async function remove(resultId) {
 
 const resultRepository = {
   create,
-  getAll,
+  getByUserId,
   update,
   remove,
 };

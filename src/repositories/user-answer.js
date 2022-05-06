@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 async function create(userAnswer) {
   const createdUserAnswer = await app.db.UserAnswer.create(userAnswer);
   return createdUserAnswer;
@@ -13,9 +15,19 @@ async function find(userAnswerId) {
   return userAnswer;
 }
 
-async function getAll(userId) {
+async function getByUserId({ userId, createdAt }) {
   const userAnswers = await app.db.UserAnswer.findAll({
-    where: { userId },
+    where: {
+      userId,
+      ...(createdAt ? {
+        createdAt: {
+          [Op.eq]: new Date(createdAt),
+        },
+      } : {}),
+    },
+    order: [
+      ['createdAt', 'DESC'],
+    ],
   });
   return userAnswers;
 }
@@ -42,7 +54,7 @@ export default {
   create,
   createMultiple,
   find,
-  getAll,
+  getByUserId,
   update,
   remove,
 };
