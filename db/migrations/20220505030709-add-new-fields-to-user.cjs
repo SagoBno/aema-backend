@@ -13,7 +13,7 @@ module.exports = {
     await queryInterface.addColumn('Users', 'birthday', {
       type: Sequelize.DATE,
       allowNull: false,
-      defaultValue: Sequelize.NOW,
+      defaultValue: Sequelize.fn('now'),
     });
   },
 
