@@ -11,6 +11,7 @@ const App = (() => {
     return app;
   };
 
+
   return {
     getInstance: async () => {
       if (!instance) {
