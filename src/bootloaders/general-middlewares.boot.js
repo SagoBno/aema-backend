@@ -1,17 +1,23 @@
-// import csrf from 'csurf';
 import cors from 'cors';
+import csrf from 'csurf';
 import config from 'config';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import session from 'cookie-session';
 import cookieParser from 'cookie-parser';
 
-export default (app) => {
+export default (appParam) => {
+  const app = appParam;
   const { server } = app;
   server.use(morgan('combined'));
   server.use(cookieParser());
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
+
+  if (config.get('isProduction')) {
+    server.set('trust proxy', 1);
+  }
   server.use(
     session({
       secret: config.get('session.secret'),
@@ -20,6 +26,7 @@ export default (app) => {
       cookie: {
         httpOnly: true,
         secure: config.get('session.cookie.secure'),
+        domain: config.get('session.cookie.domain'),
       },
     }),
   );
@@ -35,16 +42,25 @@ export default (app) => {
       },
     }),
   );
-  // app.use(csrf());
   server.use(app.passport.initialize());
   server.use(app.passport.session());
 
-  /*
-    app.use(function(req, res, next) {
-    res.locals.csrfToken = req.csrfToken();
+  server.use(csrf({
+    cookie: {
+      httpOnly: true,
+      secure: config.get('csrf.cookie.secure'),
+      domain: config.get('csrf.cookie.domain'),
+    },
+  }));
+
+  server.use((req, res, next) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
     next();
-    });
-    */
+  });
+
+  if (config.get('isProduction')) {
+    server.use(helmet());
+  }
 
   return Promise.resolve(app);
 };

@@ -19,7 +19,7 @@ export default (appParam) => {
         .then((user) => {
           if (!user) {
             return done(null, false, {
-              message: 'Incorrect email or password.',
+              name: 'IncorrectUsernameError',
             });
           }
 
@@ -35,6 +35,7 @@ export default (appParam) => {
               }
               if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
                 return done(null, false, {
+                  name: 'IncorrectPasswordError',
                   message: 'Incorrect username or password.',
                 });
               }

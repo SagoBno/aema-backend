@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 export default async (app) => {
   const { pathname } = new URL('../routes', import.meta.url);
@@ -16,6 +17,14 @@ export default async (app) => {
       app.server.use(`/${routesBase}`, routeHandler);
     }),
   );
+
+  // eslint-disable-next-line no-unused-vars
+  app.server.use((error, req, res, next) => {
+    if (error.code === 'EBADCSRFTOKEN') {
+      return res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
+    }
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+  });
 
   return app;
 };
