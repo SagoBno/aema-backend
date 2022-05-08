@@ -9,25 +9,15 @@ export default (sequelize, DataTypes) => {
   }
   User.init(
     {
-      firstName: {
+      parentFirstName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastName: {
+      parentLastName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      termsAcepted: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-      },
-      genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'Otro',
-      },
-      birthday: {
+      parentBirthday: {
         type: DataTypes.DATE,
         allowNull: false,
       },
@@ -41,6 +31,28 @@ export default (sequelize, DataTypes) => {
       },
       salt: {
         type: DataTypes.BLOB,
+      },
+      termsAcepted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      childFirstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      childLastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      genre: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Otro',
+      },
+      childBirthday: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
     },
     {

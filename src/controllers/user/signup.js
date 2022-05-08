@@ -13,15 +13,19 @@ const signup = (req, res, next) => {
       if (err) {
         return next(err);
       }
+      console.log(req.body, 'req.body');
 
       try {
         const user = await app.db.User.create({
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
+          parentFirstName: req.body.parentFirstName,
+          parentLastName: req.body.parentLastName,
+          parentBirthday: req.body.parentBirthday,
           email: req.body.email,
-          genre: req.body.genre,
-          birthday: req.body.birthday,
           password: hashedPassword,
+          genre: req.body.genre,
+          childFirstName: req.body.childFirstName,
+          childLastName: req.body.childLastName,
+          childBirthday: req.body.childBirthday,
           salt,
         });
 
