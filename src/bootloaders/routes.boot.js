@@ -20,6 +20,7 @@ export default async (app) => {
 
   // eslint-disable-next-line no-unused-vars
   app.server.use((error, req, res, next) => {
+    console.error(error);
     if (error.code === 'EBADCSRFTOKEN') {
       return res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
     }

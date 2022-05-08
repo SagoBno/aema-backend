@@ -1,5 +1,5 @@
 import cors from 'cors';
-import csrf from 'csurf';
+// import csrf from 'csurf';
 import config from 'config';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -45,7 +45,7 @@ export default (appParam) => {
   server.use(app.passport.initialize());
   server.use(app.passport.session());
 
-  server.use(csrf({
+  /* server.use(csrf({
     cookie: {
       httpOnly: true,
       secure: config.get('csrf.cookie.secure'),
@@ -56,7 +56,7 @@ export default (appParam) => {
   server.use((req, res, next) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     next();
-  });
+  }); */
 
   if (config.get('isProduction')) {
     server.use(helmet());
