@@ -7,7 +7,7 @@ const create = async (req, res, next) => {
   try {
     const [userAnswer] = await userAnswerCases.getByUserId(req.user.id);
 
-    if (userAnswer) {
+    if (userAnswer && !req.cookies.FEATURE_FLAG_ALWAYS_AVAILABLE_TO_SEND_USERS_ANSWERS) {
       const availability = validateAvailability(userAnswer.createdAt);
       if (!availability) {
         return res.status(403).json({
