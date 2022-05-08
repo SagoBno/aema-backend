@@ -20,13 +20,13 @@ module.exports = {
     secret: 'keyboard cat',
     cookie: {
       secure: false,
-      domain: '',
+      domain: 'localhost',
     },
   },
   csrf: {
     cookie: {
       secure: false,
-      domain: '',
+      domain: 'localhost',
     },
   },
   rateLimiter: {
