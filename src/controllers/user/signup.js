@@ -13,7 +13,6 @@ const signup = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      console.log(req.body, 'req.body');
 
       try {
         const user = await app.db.User.create({
