@@ -75,6 +75,20 @@ const loginWithPassword = async (req, res, next) => {
         return next(loginError);
       }
 
+      const cookiesEntries = Object.entries(req.cookies);
+      const featureFlagsInCookies = cookiesEntries.filter(([key]) => key.includes('FEATURE_FLAG'));
+      featureFlagsInCookies.forEach(([featureFlag, value]) => {
+        res.cookie(
+          featureFlag,
+          value,
+          {
+            httpOnly: true,
+            secure: config.get('session.cookie.secure'),
+            domain: config.get('session.cookie.domain'),
+          },
+        );
+      });
+
       return res.status(StatusCodes.ACCEPTED).send(ReasonPhrases.ACCEPTED);
     });
   })(req, res, next);
