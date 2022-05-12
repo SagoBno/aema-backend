@@ -51,62 +51,8 @@ module.exports = {
         page: 'https://neurotherapy.com.co/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
+      }, {
         id: 6,
-        name: 'Cuerpo Arte y Palabra - Psicologos Clinicos',
-        phoneNumber: '(+57) 3219465830',
-        city: 'Bogotá',
-        address: 'Cra. 20 #137-21',
-        page: 'https://www.cuerpoarteypalabra.com/psicologia-adolescentes.html',
-        createdAt: sequelize.fn('now'),
-        updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 7,
-        name: 'AEPSI - Asesorías y Estrategias Psicológicas',
-        phoneNumber: '(+57) 3208724660',
-        email: 'info@aepsi.com.co',
-        city: 'Bogotá',
-        address: 'Calle 93B No. 16 - 08. Consultorio 301',
-        page: 'https://aepsi.com.co/',
-        createdAt: sequelize.fn('now'),
-        updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 8,
-        name: 'Neuro Therapy - Estimulación Infantil',
-        phoneNumber: '(+57) 3243875714',
-        email: 'bogota@neurotherapy.com.co',
-        city: 'Bogotá',
-        address: 'Calle 99 #49 38 Cons.  711 Centum Bussiness',
-        page: 'https://neurotherapy.com.co/',
-        createdAt: sequelize.fn('now'),
-        updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 9,
-        name: 'Neuro Therapy - Estimulación Infantil',
-        phoneNumber: '(+57) 3017463418',
-        email: 'medellin@neurotherapy.com.co',
-        city: 'Medellin',
-        address: 'Calle 34 B # 65 D 02 Cons 301 Edificio Entre Calles',
-        page: 'https://neurotherapy.com.co/',
-        createdAt: sequelize.fn('now'),
-        updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 10,
-        name: 'Neuro Therapy - Estimulación Infantil',
-        phoneNumber: '(+57) 3162439436',
-        email: 'cali@neurotherapy.com.co',
-        city: 'Cali',
-        page: 'https://neurotherapy.com.co/',
-        createdAt: sequelize.fn('now'),
-        updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 11,
         name: 'Apoyo Terapéutico',
         phoneNumber: '(+57) 3012013048',
         city: 'Bogotá',
@@ -114,9 +60,8 @@ module.exports = {
         page: 'https://www.apoyoterapeutico.com/terapia-psicologica-adolescentes/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 12,
+      }, {
+        id: 7,
         name: 'Centro de Servicios de Psicologia - Sentido y Realidad',
         phoneNumber: '(+57) 3013292580',
         email: 'centrosentidoyrealidad@gmail.com',
@@ -124,9 +69,8 @@ module.exports = {
         page: 'https://psicologiabogota.contacte.online/psicologia/adolescentes/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 13,
+      }, {
+        id: 8,
         name: 'Especialistas en Salud Mental Psicologa.co',
         phoneNumber: '(+57) 3203379561',
         email: 'contacto@psicologa.co',
@@ -135,9 +79,8 @@ module.exports = {
         page: 'https://psicologa.co',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 14,
+      }, {
+        id: 9,
         name: 'PADMA Terapia',
         phoneNumber: '(+57) 3223810361',
         email: 'info@padmaterapia.com',
@@ -146,9 +89,8 @@ module.exports = {
         page: 'https://padmaterapia.com/terapeuta-infantil-bogota-ninos-adolescentes/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 15,
+      }, {
+        id: 10,
         name: 'CEPAP',
         phoneNumber: '(+57) 3212056881',
         email: 'cepap2012@yahoo.com.co',
@@ -157,9 +99,8 @@ module.exports = {
         page: 'https://www.cepapasesorias.com/psicologia-infantil-bogota/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 16,
+      }, {
+        id: 11,
         name: 'Fundanita IPS Norte',
         phoneNumber: '(+57) 3115251700',
         email: 'ips@fundanita.com',
@@ -168,9 +109,8 @@ module.exports = {
         page: 'https://fundanita.com/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 17,
+      }, {
+        id: 12,
         name: 'Yerbabuena SAT',
         phoneNumber: '(+57) 3208382080',
         email: 'info@yerbabuenasat.com',
@@ -179,9 +119,8 @@ module.exports = {
         page: 'https://www.yerbabuenasat.com',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 18,
+      }, {
+        id: 13,
         name: 'Mind Salud Mental',
         phoneNumber: '(+57) 319 5195849',
         email: 'info@mindsaludmental.com',
@@ -190,9 +129,8 @@ module.exports = {
         page: 'https://www.mindsaludmental.com/psicología/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 19,
+      }, {
+        id: 14,
         name: 'Andrea Parra',
         phoneNumber: '(+57) 3164726447',
         city: 'Bogotá',
@@ -200,9 +138,8 @@ module.exports = {
         page: 'https://andreaparra.co/',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 20,
+      }, {
+        id: 15,
         name: 'María Fernanda Azcarate',
         phoneNumber: '(+57) (601) 4850261  Ext.5704',
         city: 'Bogotá',
@@ -210,9 +147,8 @@ module.exports = {
         page: 'https://www.axacolpatria.co/portal/directorio-m%C3%A9dico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 21,
+      }, {
+        id: 16,
         name: 'Dr. Eugenio Ferro Rodríguez',
         phoneNumber: '(+57) (601) 4850261 Ext.5545',
         city: 'Bogotá',
@@ -220,9 +156,8 @@ module.exports = {
         page: 'https://www.axacolpatria.co/portal/directorio-m%C3%A9dico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 22,
+      }, {
+        id: 17,
         name: 'Dr. Jonathan Irreño Sotomonte',
         phoneNumber: '(+57) (601) 4850261 Ext.6138',
         city: 'Bogotá',
@@ -230,9 +165,8 @@ module.exports = {
         page: 'https://www.axacolpatria.co/portal/directorio-m%C3%A9dico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 23,
+      }, {
+        id: 18,
         name: 'Johanna Helena Esmeral Espinosa',
         phoneNumber: '(+57 ) (601) 4850261 Ext.5768',
         city: 'Bogotá',
@@ -240,18 +174,16 @@ module.exports = {
         page: 'https://www.axacolpatria.co/portal/directorio-m%C3%A9dico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 24,
+      }, {
+        id: 19,
         name: 'Mogollón Adriana Aranzáles Mogollón',
         phoneNumber: '(+57) (601) 4850261 Ext.5490',
         city: 'Bogotá',
         page: 'https://www.axacolpatria.co/portal/directorio-m%C3%A9dico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 25,
+      }, {
+        id: 20,
         name: 'Alvarez Cortes Karina Margarita',
         phoneNumber: '(+57) 3173943744',
         city: 'Bogotá',
@@ -259,9 +191,8 @@ module.exports = {
         page: 'https://www.colsanitas.com/directorio-medico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 26,
+      }, {
+        id: 21,
         name: 'Penagos Prieto Paola',
         phoneNumber: '(+57) 3115511078',
         city: 'Bogotá',
@@ -269,9 +200,8 @@ module.exports = {
         page: 'https://www.colsanitas.com/directorio-medico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 27,
+      }, {
+        id: 22,
         name: 'Rincon Gonzalez Luz Marina',
         phoneNumber: '(+57) 3046009132',
         city: 'Bogotá',
@@ -279,9 +209,8 @@ module.exports = {
         page: 'https://www.colsanitas.com/directorio-medico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 28,
+      }, {
+        id: 23,
         name: 'Sabbagh Vasquez Tatiana',
         phoneNumber: '(+57) 3115458399',
         city: 'Bogotá',
@@ -289,9 +218,8 @@ module.exports = {
         page: 'https://www.colsanitas.com/directorio-medico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 29,
+      }, {
+        id: 24,
         name: 'Marolas Agar Iglesias Carbonello',
         phoneNumber: '(+57) 3014820049',
         city: 'Barranquilla',
@@ -299,9 +227,8 @@ module.exports = {
         page: 'https://www.colsanitas.com/directorio-medico',
         createdAt: sequelize.fn('now'),
         updatedAt: sequelize.fn('now'),
-      },
-      {
-        id: 30,
+      }, {
+        id: 25,
         name: 'Jorge Meneses Jhonell',
         phoneNumber: '18000979020',
         city: 'Bucaramanga',
@@ -314,6 +241,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('Psychologists', null, {});
   },
 };
