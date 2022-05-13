@@ -20,11 +20,11 @@ const signup = (req, res, next) => {
           parentBirthday: req.body.parentBirthday,
           email: req.body.email,
           password: hashedPassword,
+          salt,
           genre: req.body.genre,
           childFirstName: req.body.childFirstName,
           childLastName: req.body.childLastName,
           childBirthday: req.body.childBirthday,
-          salt,
         });
 
         return req.logIn(user, (loginError) => {
