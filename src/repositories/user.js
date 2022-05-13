@@ -1,36 +1,36 @@
-async function create(userAnswer) {
-  const createdUserAnswer = await app.db.UserAnswer.create(userAnswer);
-  return createdUserAnswer;
+async function create(user) {
+  const createdUser = await app.db.User.create(user);
+  return createdUser;
 }
 
-async function createMultiple(userAnswers) {
-  const createdUserAnswer = await app.db.UserAnswer.bulkCreate(userAnswers);
-  return createdUserAnswer;
-}
-
-async function find(userAnswerId) {
-  const userAnswer = await app.db.UserAnswer.findByPk(userAnswerId);
-  return userAnswer;
+async function find(userEmail) {
+  const user = await app.db.User.findOne({
+    where: {
+      email: userEmail,
+    },
+    raw: true,
+  });
+  return user;
 }
 
 async function getAll(userId) {
-  const userAnswers = await app.db.UserAnswer.findAll({
+  const users = await app.db.User.findAll({
     where: { userId },
   });
-  return userAnswers;
+  return users;
 }
 
-async function update(userAnswer) {
-  const updatedUserAnswer = await app.db.UserAnswer.update(userAnswer, {
+async function update(user, userEmail) {
+  const updatedUser = await app.db.User.update(user, {
     where: {
-      userId: userAnswer.userId,
+      email: userEmail,
     },
   });
-  return updatedUserAnswer;
+  return updatedUser;
 }
 
 async function remove(userAnswerId) {
-  const deletedUserAnswer = await app.db.UserAnswer.destroy({
+  const deletedUserAnswer = await app.db.User.destroy({
     where: {
       userId: userAnswerId,
     },
@@ -40,7 +40,6 @@ async function remove(userAnswerId) {
 
 export default {
   create,
-  createMultiple,
   find,
   getAll,
   update,

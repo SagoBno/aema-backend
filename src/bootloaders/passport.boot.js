@@ -1,6 +1,7 @@
-import crypto from 'crypto';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
+
+import cryptoUtils from '../utils/crypto.js';
 
 export default (appParam) => {
   const app = appParam;
@@ -23,17 +24,14 @@ export default (appParam) => {
             });
           }
 
-          return crypto.pbkdf2(
+          return cryptoUtils.encrypt(
             password,
             user.salt,
-            310000,
-            32,
-            'sha256',
             (err, hashedPassword) => {
               if (err) {
                 return done(err);
               }
-              if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
+              if (!cryptoUtils.compare(user.password, hashedPassword)) {
                 return done(null, false, {
                   name: 'IncorrectPasswordError',
                   message: 'Incorrect username or password.',

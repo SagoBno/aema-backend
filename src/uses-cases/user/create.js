@@ -1,8 +1,5 @@
 import userRepository from '../../repositories/user.js';
 
-const create = (userId, { date } = {}) => userRepository.getByUserId({
-  userId,
-  createdAt: date,
-});
+const create = (user) => userRepository.create(user);
 
 export default create;
