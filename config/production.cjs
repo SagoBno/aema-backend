@@ -22,10 +22,10 @@ module.exports = {
   },
   db: {
     username: 'postgres',
-    password: '2uEK7Y5VOs5tzDqZhppV',
+    password: 'gnVaEYHog3XOmbOBpaq5',
     database: 'railway',
-    host: 'containers-us-west-45.railway.app',
-    port: 6227,
+    host: 'containers-us-west-49.railway.app',
+    port: 5550,
     dialect: 'postgres',
   },
   redis: {
