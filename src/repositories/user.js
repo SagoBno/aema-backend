@@ -13,10 +13,8 @@ async function find(userEmail) {
   return user;
 }
 
-async function getAll(userId) {
-  const users = await app.db.User.findAll({
-    where: { userId },
-  });
+async function getAll() {
+  const users = await app.db.User.findAll();
   return users;
 }
 

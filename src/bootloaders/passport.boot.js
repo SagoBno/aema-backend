@@ -2,6 +2,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 
 import nodeCryptoUtils from '../utils/nodeCrypto.js';
+import userCases from '../uses-cases/user/index.js';
 
 export default (appParam) => {
   const app = appParam;
@@ -13,13 +14,7 @@ export default (appParam) => {
       },
       async (email, password, done) => {
         try {
-          // Here we must use the repositories or use-cases methods
-          const user = await app.db.User.findOne({
-            where: {
-              email,
-            },
-            raw: true,
-          });
+          const user = await userCases.find(email);
 
           if (!user) {
             return done(null, false, {
