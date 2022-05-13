@@ -1,7 +1,6 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-
-import cryptoUtils from '../utils/crypto.js';
+import bcrypt from 'bcrypt';
 
 export default (appParam) => {
   const app = appParam;
@@ -17,29 +16,24 @@ export default (appParam) => {
         },
         raw: true,
       })
-        .then((user) => {
+        .then(async (user) => {
           if (!user) {
             return done(null, false, {
               name: 'IncorrectUsernameError',
             });
           }
-
-          return cryptoUtils.encrypt(
-            password,
-            user.salt,
-            (err, hashedPassword) => {
-              if (err) {
-                return done(err);
-              }
-              if (!cryptoUtils.compare(user.password, hashedPassword)) {
-                return done(null, false, {
-                  name: 'IncorrectPasswordError',
-                  message: 'Incorrect username or password.',
-                });
-              }
-              return done(null, user);
-            },
-          );
+          try {
+            const rightPassword = await bcrypt.compare(password, user.password);
+            if (!rightPassword) {
+              return done(null, false, {
+                name: 'IncorrectPasswordError',
+                message: 'Incorrect username or password.',
+              });
+            }
+            return done(null, user);
+          } catch (error) {
+            return done(error);
+          }
         })
         .catch((error) => done(error)),
     ),

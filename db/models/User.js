@@ -27,10 +27,7 @@ export default (sequelize, DataTypes) => {
         unique: true,
       },
       password: {
-        type: DataTypes.BLOB,
-      },
-      salt: {
-        type: DataTypes.BLOB,
+        type: DataTypes.STRING,
       },
       termsAcepted: {
         type: DataTypes.BOOLEAN,
