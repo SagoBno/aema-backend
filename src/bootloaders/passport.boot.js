@@ -1,6 +1,7 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import bcrypt from 'bcrypt';
+
+import nodeCryptoUtils from '../utils/nodeCrypto.js';
 
 export default (appParam) => {
   const app = appParam;
@@ -10,32 +11,37 @@ export default (appParam) => {
         usernameField: 'email',
         passwordField: 'password',
       },
-      (email, password, done) => app.db.User.findOne({
-        where: {
-          email,
-        },
-        raw: true,
-      })
-        .then(async (user) => {
+      async (email, password, done) => {
+        try {
+          // Here we must use the repositories or use-cases methods
+          const user = await app.db.User.findOne({
+            where: {
+              email,
+            },
+            raw: true,
+          });
+
           if (!user) {
             return done(null, false, {
               name: 'IncorrectUsernameError',
             });
           }
-          try {
-            const rightPassword = await bcrypt.compare(password, user.password);
-            if (!rightPassword) {
-              return done(null, false, {
-                name: 'IncorrectPasswordError',
-                message: 'Incorrect username or password.',
-              });
-            }
-            return done(null, user);
-          } catch (error) {
-            return done(error);
+          const hashedPassword = await nodeCryptoUtils.encrypt(
+            password,
+            user.salt,
+          );
+          if (!nodeCryptoUtils.compare(user.password, hashedPassword)) {
+            return done(null, false, {
+              name: 'IncorrectPasswordError',
+              message: 'Incorrect username or password.',
+            });
           }
-        })
-        .catch((error) => done(error)),
+          return done(null, user);
+        } catch (error) {
+          done(error);
+        }
+        return '';
+      },
     ),
   );
 
