@@ -4,7 +4,8 @@ import userCases from '../../uses-cases/user/index.js';
 
 const signup = async (req, res, next) => {
   try {
-    const user = await userCases.create(req.body);
+    await userCases.create(req.body);
+    const user = await userCases.find(req.body.email);
     return req.logIn(user, (loginError) => {
       if (loginError) {
         return next(loginError);
