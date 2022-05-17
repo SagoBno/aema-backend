@@ -10,7 +10,7 @@ const update = async (userParam, userEmail) => {
       dbUser.salt,
     );
     if (!nodeCryptoUtils.compare(dbUser.password, hashedPassword)) {
-      return 'Contraseña incorrecta';
+      throw new Error('Contraseña incorrecta');
     }
     const salt = nodeCryptoUtils.createSalt();
     const hashedNewPassword = await nodeCryptoUtils.encrypt(user.newPassword, salt);
@@ -18,7 +18,10 @@ const update = async (userParam, userEmail) => {
     user.salt = salt;
     delete user.oldPassword;
     delete user.newPassword;
+  } else {
+    delete user.password;
   }
+  delete user.email;
   return userRepository.update(user, userEmail);
 };
 

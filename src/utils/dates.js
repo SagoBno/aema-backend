@@ -7,7 +7,7 @@ dayjs.locale('es');
 
 dayjs.extend(utc);
 
-export const formatDate = (date) => dayjs(date).format('ddd, MMM D, YYYY h:mm A');
+export const formatDate = (date, format = 'ddd, MMM D, YYYY h:mm A') => dayjs(date).format(format);
 
 export const getDiffInWeeks = (dateA, dateB) => dayjs.utc(dateA).diff(dayjs.utc(dateB), 'week');
 

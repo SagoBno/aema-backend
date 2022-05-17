@@ -3,6 +3,7 @@ import LocalStrategy from 'passport-local';
 
 import nodeCryptoUtils from '../utils/nodeCrypto.js';
 import userCases from '../uses-cases/user/index.js';
+import { formatDate } from '../utils/dates.js';
 
 export default (appParam) => {
   const app = appParam;
@@ -40,11 +41,12 @@ export default (appParam) => {
     ),
   );
 
-  passport.serializeUser((user, done) => done(null, {
-    id: user.id,
-    email: user.email,
-    firstName: user.firstName,
-    lastName: user.lastName,
+  passport.serializeUser(({
+    password, salt, parentBirthday, childBirthday, ...restOfUser
+  }, done) => done(null, {
+    parentBirthday: formatDate(parentBirthday, 'YYYY-MM-DD'),
+    childBirthday: formatDate(childBirthday, 'YYYY-MM-DD'),
+    ...restOfUser,
   }));
 
   passport.deserializeUser((user, done) => done(null, user));
