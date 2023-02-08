@@ -1,2 +1,2 @@
-# aema-backend
+# Aema Backend
 Backend of AEMA
